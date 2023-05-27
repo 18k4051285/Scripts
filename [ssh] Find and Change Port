@@ -1,0 +1,14 @@
+#!/bin/bash
+#To check current port number being used by SSH
+port_using=$(grep -E "^Port\s" /etc/ssh/sshd_config | awk '{print $2}')
+echo "Port using: $port_using"
+read -p 'Change to : ' port_change
+#Uncomment the line containing the word Port
+sed -i '/^#.*Port/s/^#//' /etc/ssh/sshd_config
+#Change port 
+sed -i "s/Port\ $port_using/Port\ $port_change/g" /etc/ssh/sshd_config
+#Restart sshd service
+sudo systemctl restart sshd
+#To check current port number being used by SSH again !!!
+port_check=$(grep -E "^Port\s" /etc/ssh/sshd_config | awk '{print $2}')
+echo Port changed to : $port_check !!!
