@@ -13,4 +13,4 @@ sudo systemctl restart sshd
 port_check=$(grep -E "^Port\s" /etc/ssh/sshd_config | awk '{print $2}')
 echo Port changed to : $port_check !!!
 
-echo Finished
+
