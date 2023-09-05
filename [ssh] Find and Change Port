@@ -12,3 +12,5 @@ sudo systemctl restart sshd
 #To check current port number being used by SSH again !!!
 port_check=$(grep -E "^Port\s" /etc/ssh/sshd_config | awk '{print $2}')
 echo Port changed to : $port_check !!!
+
+echo Finished
